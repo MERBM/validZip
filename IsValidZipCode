@@ -1,0 +1,11 @@
+ public async Task<bool> IsValidZipCode(string zipCode)
+ {
+     zipCode = zipCode.Trim();
+     string[] zipParts = zipCode.Split('-');
+     string firstPart = zipParts[0].TrimStart('0');
+     if (!string.IsNullOrEmpty(firstPart) &&
+         Regex.IsMatch(firstPart, @"^\d{3,5}(-\d{4})?$") &&
+         await ValidateZip(firstPart)) return true;
+     else
+         return false;
+ }
