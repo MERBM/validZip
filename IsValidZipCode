@@ -9,3 +9,7 @@
      else
          return false;
  }
+ private async Task<bool> ValidateZip(string zip)
+ {
+     return await _context.ZipcodeTimeZones.AnyAsync(x => x.Zip == zip);
+ }
