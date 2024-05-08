@@ -1,0 +1,27 @@
+   // Create a timezone provider and America/Chicago timezone
+   var dateTimeZoneProvider = DateTimeZoneProviders.Tzdb;
+   var chicagoZone = dateTimeZoneProvider["America/Chicago"];
+
+   // Get the current instant
+   var now = SystemClock.Instance.GetCurrentInstant();
+
+   // Get the zoned time in Chicago
+   var chicagoTime = now.InZone(chicagoZone);
+
+   //////////****************/////////////
+   // Obtain the local time zone of the server
+   TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
+
+   // Get the current UTC offset
+   TimeSpan currentOffset = localTimeZone.GetUtcOffset(DateTime.UtcNow);
+
+   // Output the current UTC offset
+   Console.WriteLine("Current GMT offset: " + currentOffset.ToOffset());
+
+   // If you want to display it in hours and minutes, you can use this line
+   Console.WriteLine("Current GMT offset (hours:minutes): {0}:{1}", currentOffset.Hours, currentOffset.Minutes);
+   //////////****************//////////////
+
+   // Output the current time and the offset from UTC
+   Console.WriteLine("Current time in Chicago: " + chicagoTime);
+   Console.WriteLine("Current UTC offset: " + chicagoTime.Offset);
